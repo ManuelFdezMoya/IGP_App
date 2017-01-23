@@ -7,24 +7,16 @@
 
 library(shiny)
 
+load("regiones.Rdat")
+
+
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Seleccionar provincias de una región"),
 
-  # Sidebar with a slider input for number of bins
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-    ),
-
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
-    )
-  )
-))
+  # Seleccionar región
+  selectInput("Regiones", label = h3("Selecciona la región"), 
+              choices = regiones
+              , selected = 1)
+  ))
