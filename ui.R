@@ -7,7 +7,6 @@
 
 library(shiny)
 
-load("regiones.Rdat")
 
 
 shinyUI(fluidPage(
@@ -18,5 +17,16 @@ shinyUI(fluidPage(
   # Seleccionar región
   selectInput("Regiones", label = h3("Selecciona la región"), 
               choices = regiones
-              , selected = 1)
+              , selected = 1), 
+  
+  hr(),
+  
+  #tableOutput("data"),
+  
+  uiOutput("provincesControls")
+  
+  #fluidRow(column(3, verbatimTextOutput("value"))),
+  
+
+  
   ))

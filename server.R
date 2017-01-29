@@ -7,17 +7,20 @@
 
 library(shiny)
 
+load("regiones.Rdat")
+load("provinces.Rdat")
+
 shinyServer(function(input, output) {
 
-  output$distPlot <- renderPlot({
-
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
+  output$value <- renderPrint({ input$Regiones })
+  
+  output$provincesControls <- renderUI({
+    provinces_sel <- provinces[ provinces$Region == input$Regiones, "Province"]
+    #checkboxGroupInput("provinces_sel", "Elige provincia", provinces_sel)
+    selectInput("Provincias", label = h3("Elige la provincia"), 
+                choices = provinces_sel
+                , selected = 1)
+    
   })
 
 })
